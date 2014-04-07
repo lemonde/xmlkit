@@ -1,0 +1,25 @@
+{
+  "name": "xmlkit",
+  "version": "0.0.0",
+  "description": "HTMLparser2 toolkit for XML",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha test"
+  },
+  "keywords": [
+    "xml",
+    "toolkit",
+    "htmlparser2",
+    "CSSselect"
+  ],
+  "author": "salper",
+  "license": "MIT",
+  "dependencies": {
+    "CSSselect": "~0.7.0",
+    "htmlparser2": "~3.7.1"
+  },
+  "devDependencies": {
+    "chai": "~1.9.1",
+    "mocha": "~1.18.2"
+  }
+}
