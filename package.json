@@ -16,7 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "CSSselect": "~0.7.0",
-    "htmlparser2": "~3.7.1"
+    "htmlparser2": "~3.7.1",
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",

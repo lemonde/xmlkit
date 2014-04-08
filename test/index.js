@@ -10,7 +10,7 @@ describe('XMLKit', function () {
 
   describe('given no xml', function () {
     beforeEach(function () {
-      kit = xmlkit.parse();
+      kit = xmlkit();
     });
 
     it('should return empty kit', function () {
@@ -20,7 +20,7 @@ describe('XMLKit', function () {
 
   describe('given empty xml', function () {
     beforeEach(function () {
-      kit = xmlkit.parse('');
+      kit = xmlkit('');
     });
 
     it('should return nothing', function () {
@@ -30,7 +30,7 @@ describe('XMLKit', function () {
 
   describe('given text only', function () {
     beforeEach(function () {
-      kit = xmlkit.parse('test');
+      kit = xmlkit('test');
     });
 
     it('should find nothing', function () {
@@ -48,7 +48,7 @@ describe('XMLKit', function () {
 
   describe('given tags', function () {
     beforeEach(function () {
-      kit = xmlkit.parse(fs.readFileSync(path.join(__dirname, './fixture.xml')));
+      kit = xmlkit(fs.readFileSync(path.join(__dirname, './fixture.xml')));
     });
 
     it('should find elements', function () {
@@ -90,7 +90,7 @@ describe('XMLKit', function () {
         'innerXml', 'Gambardella, Matthew'
       );
 
-      var nodes = new xmlkit.Kit(kit.find('catalog > book').slice(0, 2).map(function (kit) {
+      var nodes = xmlkit(kit.find('catalog > book').slice(0, 2).map(function (kit) {
         return kit.find('author');
       }));
       expect(nodes).to.have.property('innerXml', 'Gambardella, MatthewRalls, Kim');
@@ -101,7 +101,7 @@ describe('XMLKit', function () {
         'outerXml', '<author>Gambardella, Matthew</author>'
       );
 
-      var nodes = new xmlkit.Kit(kit.find('catalog > book').slice(0, 2).map(function (kit) {
+      var nodes = xmlkit(kit.find('catalog > book').slice(0, 2).map(function (kit) {
         return kit.find('author');
       }));
       expect(nodes).to.have.property('outerXml').that.equal(
