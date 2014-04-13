@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "HTMLparser2 toolkit for XML",
   "main": "lib/index.js",
+  "engine": {
+    "node": ">=0.10 <0.12"
+  },
   "scripts": {
     "test": "node_modules/.bin/mocha test"
   },
@@ -21,6 +24,7 @@
   },
   "devDependencies": {
     "chai": "~1.9.1",
-    "mocha": "~1.18.2"
+    "mocha": "~1.18.2",
+    "underscore.string": "^2.3.3"
   }
 }
