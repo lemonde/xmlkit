@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "HTMLparser2 toolkit for XML",
   "main": "lib/index.js",
+  "engine": {
+    "node": ">=0.10 <0.12"
+  },
   "scripts": {
     "test": "node_modules/.bin/mocha test"
   },
