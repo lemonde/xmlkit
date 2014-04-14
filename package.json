@@ -2,10 +2,15 @@
   "name": "xmlkit",
   "version": "0.0.0",
   "description": "HTMLparser2 toolkit for XML",
-  "main": "lib/index.js",
   "engine": {
     "node": ">=0.10 <0.12"
   },
+  "repository" : {
+    "type" : "git",
+    "url" : "git://github.com/lemonde/xmlkit"
+  },
+  "private": true,
+  "main": "lib/index.js",
   "scripts": {
     "test": "node_modules/.bin/mocha test"
   },
