@@ -79,9 +79,9 @@ kit('<p>First</p><p>Second</p>').reduce(function (acc, kit) {
 }, []).join(', ');
 // => 'First, Second'
 
-kit('<p>First</p><p>Second</p>').remove('p').innerXml;
+kit('<p>First</p><p>Second</p>').remove('p').outerXml;
 // => ''
 
-kit('<p>First</p><p>Second</p>').clean('p').innerXml;
+kit('<p>First</p><p>Second</p>').clean('p').outerXml;
 // => 'FirstSecond'
 ```
