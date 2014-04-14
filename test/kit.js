@@ -92,6 +92,18 @@ describe('kit', function () {
       });
     });
 
+    it('should get parent node', function () {
+      expect(kit.find('author')).to.have.deep.property('parent.attr.id', 'bk101');
+    });
+
+    it('should get previous node', function () {
+      expect(kit.find('book').get(1)).to.have.deep.property('prev.prev.attr.id', 'bk101');
+    });
+
+    it('should get next node', function () {
+      expect(kit.find('book')).to.have.deep.property('next.next.attr.id', 'bk102');
+    });
+
     it('shouls slice nodes', function () {
       expect(kit.find('book').slice(1, 2).innerXml.trim()).to.satisfy(function (text) {
         return _s.startsWith(text, '<author>Ralls') &&
