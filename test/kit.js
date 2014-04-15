@@ -111,6 +111,14 @@ describe('kit', function () {
       });
     });
 
+    it('shouls sort nodes', function () {
+      function sortBook(a, b) {
+        return a.attr.id > b.attr.id ? -1 : (a.attr.id < b.attr.id ? 1 : 0);
+      }
+
+      expect(kit.find('book').sort(sortBook)).to.have.deep.property('attr.id', 'bk112');
+    });
+
     it('should filter nodes', function () {
       var filteredKit = kit.find('catalog, book').filter(function (kit) {
         return kit.is('book');
