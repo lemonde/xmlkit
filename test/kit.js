@@ -201,7 +201,8 @@ describe('kit', function () {
     });
 
     it('should append nodes', function () {
-      var result = kit.find('author').append('<test/>').map(function (kit) {
+      kit.find('author').append('<test/>');
+      var result = kit.find('author').map(function (kit) {
         return kit.next.outerXml;
       });
 
@@ -211,7 +212,8 @@ describe('kit', function () {
     });
 
     it('should prepend nodes', function () {
-      var result = kit.find('author').prepend('<test/>').map(function (kit) {
+      kit.find('author').prepend('<test/>');
+      var result = kit.find('author').map(function (kit) {
         return kit.prev.outerXml;
       });
 
