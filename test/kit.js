@@ -233,6 +233,9 @@ describe('kit', function () {
     it('should clean nodes', function () {
       expect(kit.find('book:first-child author').clean('author').outerXml.trim())
       .to.equal('Gambardella, Matthew');
+
+      expect(factory('<p>par<foo>agr</foo>aph').clean('*:not(strong)').outerXml.trim())
+      .to.equal('paragraph');
     });
 
     it('should replace nodes', function () {
