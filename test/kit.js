@@ -85,6 +85,15 @@ describe('kit', function () {
       });
     });
 
+    it('should get attributes', function () {
+      expect(kit.find('book')).to.have.deep.property('attr.id', 'bk101');
+    });
+
+    it('should set attributes', function () {
+      kit.find('book').attr.id = 'bk1001';
+      expect(kit.find('book')).to.have.deep.property('attr.id', 'bk1001');
+    });
+
     it('should get nth node', function () {
       expect(kit.find('book').get(1).innerXml.trim()).to.satisfy(function (text) {
         return _s.startsWith(text, '<author>Ralls') &&
@@ -120,24 +129,24 @@ describe('kit', function () {
     });
 
     it('should filter nodes', function () {
-      var filteredKit = kit.find('catalog, book').filter(function (kit) {
+      var result = kit.find('catalog, book').filter(function (kit) {
         return kit.is('book');
       });
 
-      expect(filteredKit).to.have.length(12);
-      expect(filteredKit.outerXml.trim()).to.satisfy(function (text) {
+      expect(result).to.have.length(12);
+      expect(result.outerXml.trim()).to.satisfy(function (text) {
         return _s.startsWith(text, '<book id="bk101">') &&
                _s.endsWith(text, 'environment.</description>\n   </book>');
       });
     });
 
     it('should iterate on nodes', function () {
-      var tags = [];
+      var result = [];
       kit.find('author').forEach(function (kit) {
-        tags.push(kit.innerXml);
+        result.push(kit.innerXml);
       });
 
-      expect(tags).to.eql([
+      expect(result).to.eql([
         'Gambardella, Matthew',
         'Ralls, Kim',
         'Corets, Eva',
@@ -171,11 +180,11 @@ describe('kit', function () {
     });
 
     it('should reduce nodes', function () {
-      var tags = kit.find('author').reduce(function (tags, kit) {
+      var result = kit.find('author').reduce(function (tags, kit) {
         return tags.concat([kit.innerXml]);
       }, []);
 
-      expect(tags).to.eql([
+      expect(result).to.eql([
         'Gambardella, Matthew',
         'Ralls, Kim',
         'Corets, Eva',
@@ -191,17 +200,58 @@ describe('kit', function () {
       ]);
     });
 
+    it('should append nodes', function () {
+      kit.find('author').append('<test/>');
+      var result = kit.find('author').map(function (kit) {
+        return kit.next.outerXml;
+      });
+
+      expect(result).to.eql(_.range(0, 12).map(function () {
+        return '<test></test>';
+      }));
+    });
+
+    it('should prepend nodes', function () {
+      kit.find('author').prepend('<test/>');
+      var result = kit.find('author').map(function (kit) {
+        return kit.prev.outerXml;
+      });
+
+      expect(result).to.eql(_.range(0, 12).map(function () {
+        return '<test></test>';
+      }));
+    });
+
     it('should remove nodes', function () {
-      expect(
-        kit.find('book:first-child')
-        .remove('title, genre, price, publish_date, description')
-        .innerXml.trim()
-      ).to.equal('<author>Gambardella, Matthew</author>');
+      var result = kit.find('book:first-child')
+      .remove('title, genre, price, publish_date, description')
+      .innerXml.trim();
+
+      expect(result).to.equal('<author>Gambardella, Matthew</author>');
     });
 
     it('should clean nodes', function () {
       expect(kit.find('book:first-child author').clean('author').outerXml.trim())
       .to.equal('Gambardella, Matthew');
+    });
+
+    it('should replace nodes', function () {
+      var result = kit.replace('author', '<test><placeholder/></test>');
+      expect(result.find('autor')).to.have.length(0);
+      expect(result.find('test').map(_.property('innerXml'))).to.eql([
+        'Gambardella, Matthew',
+        'Ralls, Kim',
+        'Corets, Eva',
+        'Corets, Eva',
+        'Corets, Eva',
+        'Randall, Cynthia',
+        'Thurman, Paula',
+        'Knorr, Stefan',
+        'Kress, Peter',
+        'O\'Brien, Tim',
+        'O\'Brien, Tim',
+        'Galos, Mike'
+      ]);
     });
   });
 });
