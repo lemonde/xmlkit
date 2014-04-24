@@ -30,11 +30,19 @@ kit('<text>An XML string</text>').dom;
 kit('<text>An XML string</text>').length;
 // => 1
 
+/**
+ * Rendering
+ */
+
 kit('<text>An XML string</text>').innerXml;
 // => 'An XML string'
 
 kit('<text>An XML string</text>').outerXml;
 // => '<text>An XML string</text>'
+
+/**
+ * Traversing.
+ */
 
 kit('<p>First</p><p>Second</p>').first.innerXml;
 // => 'First'
@@ -42,21 +50,20 @@ kit('<p>First</p><p>Second</p>').first.innerXml;
 kit('<p>First</p><p>Second</p>').last.innerXml;
 // => 'Second'
 
-kit('<text id="some"/>').attr.id;
-// => 'some'
-
-/**
- * Methods.
- */
-
 kit('<p>First</p><p>Second</p>').get(0).innerXml;
 // => 'First'
 
-kit('<p>Paragraph</p>').is('p');
-// => true
-
 kit('<signature><author>Jake</author></signature>').find('signature > author').innerXml;
 // => 'Jake'
+
+kit('<ul><li>a</li><li>b</li></ul>').find('li').parent.outerXml;
+// => '<ul><li>a</li><li>b</li></ul>'
+
+kit('<ul><li>a</li><li>b</li></ul>').find('li').next.innerXml;
+// => 'b'
+
+kit('<ul><li>a</li><li>b</li></ul>').find('li:last-child').prev.innerXml;
+// => 'a'
 
 kit('<p>First</p><p>Second</p>').slice(0, 1).innerXml;
 // => 'First'
@@ -65,6 +72,16 @@ kit('<b>First</b><i>Second</i>').filter(function (kit) {
   return kit.is('b');
 }).innerXml;
 // => 'First'
+
+kit('<span>2</span><span>1</span><span>3</span>').sort(function (a, b) {
+  return a.innerXml > b.innerXml ? 1 : (a.innerXml < b.innerXml ? -1 : 0);
+}).outerXml;
+// => '<span>1</span><span>2</span><span>3</span>'
+
+kit('<p>1</p><span>2</span><p>3</p>').filter(function (kit) {
+  return kit.is('p');
+}).outerXml;
+// => '<p>1</p><p>3</p>'
 
 kit('<p>First</p><p>Second</p>').forEach(foo);
 // => Kit
@@ -79,9 +96,44 @@ kit('<p>First</p><p>Second</p>').reduce(function (acc, kit) {
 }, []).join(', ');
 // => 'First, Second'
 
+/**
+ * Manipulating
+ */
+
+kit('<text id="foo"/>').attr.id;
+// => 'foo'
+
+(function () {
+  var result = kit('<text id="foo"/>');
+  return (result.attr.id = 'bar') && result;
+})().outerXml;
+// => '<text id="bar"/>'
+
+kit('<p>a</p>').append('<p>b</p>').outerXml;
+// => '<p>a</p><p>b</p>'
+
+kit('<p>a</p>').prepend('<p>b</p>').outerXml;
+// => '<p>b</p><p>a</p>'
+
 kit('<p>First</p><p>Second</p>').remove('p').outerXml;
 // => ''
 
 kit('<p>First</p><p>Second</p>').clean('p').outerXml;
 // => 'FirstSecond'
+
+kit('<p>First</p><p>Second</p>').replace('p', '<span></span>').outerXml;
+// => '<span></span><span></span>'
+
+kit('<p>First</p><p>Second</p>').replace('p', '<span><placeholder/></span>').outerXml;
+// => '<span>First</span><span>Second</span>'
+
+/**
+ * Other
+ */
+
+kit('<p>Paragraph</p>').is('p');
+// => true
+
+kit('<p>Paragraph</p>').clone();
+// => Kit
 ```
