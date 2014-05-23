@@ -1,4 +1,4 @@
-# xmlkit [![Build Status][status]](https://travis-ci.org/salper/xmlkit) [![Dependency Status][deps]](https://david-dm.org/lemonde/xmlkit) [![devDependency Status][devdeps]](https://david-dm.org/lemonde/xmlkit#info=devDependencies) [![Coverage Status][coverage]](https://coveralls.io/r/lemonde/xmlkit)
+# xmlkit [![Build Status][status]](https://travis-ci.org/lemonde/xmlkit) [![Dependency Status][deps]](https://david-dm.org/lemonde/xmlkit) [![devDependency Status][devdeps]](https://david-dm.org/lemonde/xmlkit#info=devDependencies) [![Coverage Status][coverage]](https://coveralls.io/r/lemonde/xmlkit)
 
 [status]: https://travis-ci.org/lemonde/xmlkit.svg?branch=master
 [deps]: https://david-dm.org/lemonde/xmlkit.svg
