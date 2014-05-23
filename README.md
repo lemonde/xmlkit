@@ -1,5 +1,9 @@
-xmlkit [![Build Status](https://travis-ci.org/lemonde/xmlkit.svg?branch=master)](https://travis-ci.org/salper/xmlkit) [![Dependency Status](https://david-dm.org/lemonde/xmlkit.svg)](https://david-dm.org/lemonde/xmlkit) [![devDependency Status](https://david-dm.org/lemonde/xmlkit/dev-status.svg)](https://david-dm.org/lemonde/xmlkit#info=devDependencies)
-======
+# xmlkit [![Build Status][status]](https://travis-ci.org/salper/xmlkit) [![Dependency Status][deps]](https://david-dm.org/lemonde/xmlkit) [![devDependency Status][devdeps]](https://david-dm.org/lemonde/xmlkit#info=devDependencies) [![Coverage Status][coverage]](https://coveralls.io/r/lemonde/xmlkit)
+
+[status]: https://travis-ci.org/lemonde/xmlkit.svg?branch=master
+[deps]: https://david-dm.org/lemonde/xmlkit.svg
+[devdeps]: https://david-dm.org/lemonde/xmlkit/dev-status.svg
+[coverage]: https://coveralls.io/repos/lemonde/xmlkit/badge.png
 
 A lightweight toolkit to manipulate XML. It is not meant to replace [Cheerio](https://github.com/cheeriojs/cheerio), it is probably just a subset of it, without the jQuery like interface.
 
