@@ -38,7 +38,8 @@
   },
   "config": {
     "blanket": {
-      "pattern": "lib"
+      "pattern": "lib",
+      "data-cover-never": "node_modules"
     }
   }
 }
