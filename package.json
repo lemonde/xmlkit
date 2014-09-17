@@ -1,6 +1,6 @@
 {
   "name": "xmlkit",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "HTMLparser2 toolkit for XML",
   "engine": {
     "node": ">=0.10 <0.12"
