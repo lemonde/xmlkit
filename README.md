@@ -122,6 +122,9 @@ kit('<p>a</p>').prepend('<p>b</p>').outerXml;
 kit('<p>First</p><p>Second</p>').remove('p').outerXml;
 // => ''
 
+kit('<p><span><strong></strong></span>Test</p>').removeEmpty().outerXml;
+// => '<p>Test</p>'
+
 kit('<p>First</p><p>Second</p>').clean('p').outerXml;
 // => 'FirstSecond'
 
