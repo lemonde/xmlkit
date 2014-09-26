@@ -230,6 +230,11 @@ describe('kit', function () {
       expect(result).to.equal('<author>Gambardella, Matthew</author>');
     });
 
+    it('should remove empty nodes', function () {
+      var result = factory('<p><span><strong></strong></span>Test</p>').removeEmpty().outerXml;
+      expect(result).to.equal('<p>Test</p>');
+    });
+
     it('should clean nodes', function () {
       expect(kit.find('book:first-child author').clean('author').outerXml.trim())
       .to.equal('Gambardella, Matthew');
